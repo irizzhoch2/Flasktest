@@ -3,7 +3,6 @@ from sqlite import add_name, get_all_names, del_all_names
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -12,7 +11,7 @@ def index():
 def del_table():
     if 'del' in request.form:
         del_all_names()
-        print(f"<p>{'Alle Daten wurden gelöscht'}</p>")
+        #print(f"<p>{'Alle Daten wurden gelöscht'}</p>")
         return redirect('/')
     return redirect('/')
 
