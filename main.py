@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, redirect
-from sqlite import add_name, get_all_names
+from sqlite import add_name, get_all_names, del_all_names
 
 app = Flask(__name__)
 
@@ -8,8 +8,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/del', methods=['POST'])
+def del_table():
+    if 'del' in request.form:
+        del_all_names()
+        print(f"<p>{'Alle Daten wurden gelöscht'}</p>")
+        return redirect('/')
+    return redirect('/')
 
-@app.route('/process', methods=['POST'])
+@app.route('/process', methods=['POST'])    
 def process():
 
     name = request.form['name']
